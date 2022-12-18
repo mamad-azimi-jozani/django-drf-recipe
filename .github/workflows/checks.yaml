@@ -1,0 +1,25 @@
+name: Django CI/CD Workflow
+on:
+  push:
+
+jobs:
+  test-lint:
+    name: Test And Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login To Docker Hub
+        uses: docker/login-actions@v1
+        with:
+          username: {{ $secrets.DOCKERHUB_USERNAME}}
+          password: {{ $secrets.DOCKERHUB_TOKEN}}
+
+      - name: Get The Code
+        uses: actions/checkout@v3
+
+      - name: Test
+        run: docker-compose run --rm app sh -c "python manage.py test"
+
+      - name: Lint
+        run: docker-compose run --rm app sh -c "flake8"
+
+
