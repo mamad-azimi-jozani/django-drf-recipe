@@ -8,8 +8,8 @@ jobs:
       - name: Login To Docker Hub
         uses: docker/login-actions@v1
         with:
-          username: {{ $secrets.DOCKERHUB_USERNAME}}
-          password: {{ $secrets.DOCKERHUB_TOKEN}}
+          username: ${{ secrets.DOCKERHUB_USERNAME}}
+          password: ${{ secrets.DOCKERHUB_TOKEN}}
       - name: Get The Code
         uses: actions/checkout@v3
       - name: Test
