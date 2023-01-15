@@ -115,7 +115,6 @@ class PublicUserApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
-
 class PrivateUserApiTests(TestCase):
     """ test api required authentication """
     def setUp(self):
@@ -135,6 +134,7 @@ class PrivateUserApiTests(TestCase):
             'name': self.user.name,
 
         })
+
     def test_post_me_not_allowed(self):
         res = self.client.post(ME_URL, {})
         self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
